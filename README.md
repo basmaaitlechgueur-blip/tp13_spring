@@ -23,7 +23,7 @@ Activer l'API "Google Identity"
 
 Créer des identifiants OAuth 2.0
 
-Configurer l'URL de redirection : http://localhost:8080/login/oauth2/code/google
+Configurer l'URL de redirection : http://localhost:8082/login/oauth2/code/google
 
 Éléments à configurer dans l'application :
 
