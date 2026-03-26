@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Profil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 450px;
+            width: 100%;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-label i {
+            font-size: 18px;
+        }
+
+        .info-value {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #2d3748;
+            border-left: 4px solid #667eea;
+            word-break: break-word;
+        }
+
+        .info-value.email {
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            padding: 20px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .logout-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .welcome-badge {
+            background: #f0f4ff;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .welcome-badge span {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+<div class="profile-card">
+    <div class="card-header">
+        <h1>👋 Bonjour <span th:text="${name}">Utilisateur</span> !</h1>
+        <p>Bienvenue sur votre espace personnel</p>
+    </div>
+
+    <div class="card-body">
+        <div class="welcome-badge">
+            ✅ Connecté avec succès via <span>Google OAuth2</span>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">
+                📝 NOM COMPLET
+            </div>
+            <div class="info-value">
+                <span th:text="${name}">Nom de l'utilisateur</span>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">
+                📧 ADRESSE EMAIL
+            </div>
+            <div class="info-value email">
+                <span th:text="${email}">email@exemple.com</span>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">✓</div>
+                <div class="stat-label">Authentifié</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">🔒</div>
+                <div class="stat-label">Session sécurisée</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">OAuth2</div>
+                <div class="stat-label">Google ID</div>
+            </div>
+        </div>
+
+        <a href="/logout" class="logout-btn">Se déconnecter</a>
+    </div>
+</div>
+</body>
+</html>
